@@ -1,0 +1,19 @@
+#集群名字，目前是单节点
+cluster.name: "name"
+#节点名
+node.name: "es_node1"
+#配置可进行数据交互的ip
+network.host: 0.0.0.0
+#允许http跨域访问，es_head插件必须开启
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+#数据存储路径
+path.data: /usr/share/elasticsearch/data
+#日志存储路径
+path.logs: /usr/share/elasticsearch/logs
+#不锁定jvm内存
+bootstrap.memory_lock: false
+path.repo: ["/usr/share/elasticsearch/data/backup"]
+
+cluster.initial_master_nodes: ["es_node1"]
+#indices.fielddata.cache.size: 50%

@@ -1,0 +1,15 @@
+filebeat.inputs:
+- input_type: log
+  enabled: true
+  paths:
+   - /var/Log/*/*/*.log
+  fields:
+     environment: test
+  multiline:
+     pattern: '^(\{\ \"project\")'
+     negate: true
+     match: after
+
+output.logstash:
+  hosts: ['logstash_ip:port']
+

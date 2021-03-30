@@ -1,0 +1,45 @@
+version: '3'
+services:
+  kibana:
+    images: kibana:7.7.0
+    restart_policy:
+      condition: any
+    ports:
+      - "5601:5601"
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./data/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+
+  logstash:
+    images: logstash:7.7.0
+    restart_policy:
+      condition: any
+    networks:
+      - host
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./data/logstash/conf.d:/usr/share/logstash/conf.d
+      - ./data/logstash/logstash.yml:/usr/share/logstash/logstash.yml
+
+  elasticsearch:
+    images: elasticsearch:7.7.0
+    restart_policy:
+      condition: any
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./data/elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+
+  filebeat:
+    images: filebeat:7.7.0
+    restart_policy:
+      condition: any
+    networks:
+      - host
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./data/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
