@@ -2,6 +2,7 @@ version: '3'
 services:
   kibana:
     images: kibana:7.7.0
+    container_name: kibana
     restart_policy:
       condition: any
     ports:
@@ -12,6 +13,7 @@ services:
 
   logstash:
     images: logstash:7.7.0
+    container_name: logstash
     restart_policy:
       condition: any
     networks:
@@ -23,6 +25,7 @@ services:
 
   elasticsearch:
     images: elasticsearch:7.7.0
+    container_name: elasticsearch
     restart_policy:
       condition: any
     ports:
@@ -36,6 +39,7 @@ services:
 
   filebeat:
     images: filebeat:7.7.0
+    container_name: filebeat
     restart_policy:
       condition: any
     networks:
